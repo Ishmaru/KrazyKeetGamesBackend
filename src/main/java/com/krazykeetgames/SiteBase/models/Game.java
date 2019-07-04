@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Game {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotEmpty(message = "thumb is required")
