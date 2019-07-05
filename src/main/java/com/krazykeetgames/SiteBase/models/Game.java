@@ -1,11 +1,15 @@
 package com.krazykeetgames.SiteBase.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -32,7 +36,9 @@ public class Game {
 	private String download;
 	private String gitHub;
 	private String requires;
-	private String news;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<News> news = new ArrayList<>();
 	
 	
 	public Game() {
@@ -54,7 +60,6 @@ public class Game {
 		this.download = download;
 		this.gitHub = gitHub;
 		this.requires = requires;
-		this.news = news;
 	}
 
 
@@ -138,12 +143,16 @@ public class Game {
 	public void setRequires(String requires) {
 		this.requires = requires;
 	}
-	public String getNews() {
+
+	
+	public List<News> getNews() {
 		return news;
 	}
-	public void setNews(String news) {
+
+	public void setNews(List<News> news) {
 		this.news = news;
 	}
+
 	public Long getId() {
 		return id;
 	}

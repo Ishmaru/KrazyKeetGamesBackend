@@ -1,15 +1,11 @@
 package com.krazykeetgames.SiteBase.models;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
 
 @Entity
@@ -18,14 +14,12 @@ public class News {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	
+	@NotEmpty
+	private String title;
+	@NotEmpty
 	private String body;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "game_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Game game;
-
+	private String image;
+	private LocalDate postDate;
 	public String getBody() {
 		return body;
 	}
@@ -34,22 +28,41 @@ public class News {
 		this.body = body;
 	}
 
-	public Game getGame() {
-		return game;
-	}
-
-	public void setGame(Game game) {
-		this.game = game;
-	}
 
 	public long getId() {
 		return id;
 	}
 
-	public News(String body, Game game) {
+	public void setPostDate() {
+		this.postDate = LocalDate.now();
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+
+	public News(String body, String title, String image) {
 		super();
 		this.body = body;
-		this.game = game;
+		this.title = title;
+		this.image = image;
+		this.postDate = LocalDate.now();
 	}
 
 	public News() {
@@ -58,7 +71,7 @@ public class News {
 
 	@Override
 	public String toString() {
-		return "News [id=" + id + ", body=" + body + ", game=" + game + "]";
+		return "News [id=" + id + ", body=" + body +"]";
 	}
 	
 }

@@ -19,39 +19,27 @@ public class NewsService {
 	@Autowired
 	private GameRepository gameRepository;
 	
-	public List<News> getAllNews() {
+	public List<News> getAllNews(){
 		return newsRepository.findAll();
 	}
 	
-	public News getOneNews(Long id, Long gameId) {
-		try {
-			Game game = gameRepository.findById(gameId).get();
-			return newsRepository.findById(id).get();
-		}catch(Exception e){
-			return null;
-		}
-	}
-	
-	public List<News> getAllNewsFromGame(Long gameId) {
-		try {
-			Game game = gameRepository.findById(gameId).get();
-			return newsRepository.findAllByGame(game);
-		} catch(Exception e) {
-			return null;
-		}
-	}
-	
 	public String addNews(News news, Long gameId) {
-		String returnString = "";
+		String returnString = "";	
+		Game game;
 		try {
-			Game game = gameRepository.findById(gameId).get();
-			news.setGame(game);
+			game = gameRepository.findById(gameId).get();
+			System.out.println(game);
+			List<News> currNews = game.getNews();
+			currNews.add(news);
+			game.setNews(currNews);
 		}catch(Exception e) {
 			returnString = "Cannot find game";
 			return returnString;
 		}
 		try {
+
 			newsRepository.save(news);
+			gameRepository.save(game);
 			returnString = "Added" + news.getBody();
 		}catch(Exception e) {
 			returnString = "Failed To post";
@@ -63,12 +51,22 @@ public class NewsService {
 		return incoming != null ? incoming : current;
 	}
 	
-	public String updateNews(News news, Long id) {
+	public String editNews(News news, Long id) {
 		String returnString = "";
 		try {
 			News update = newsRepository.findById(id).get();
+			System.out.println(update);
 			String tempBody = validateUpdate(news.getBody(), update.getBody());
+			String tempTitle = validateUpdate(news.getTitle(), update.getTitle());
+			String tempImage = validateUpdate(news.getImage(), update.getImage());
+			
+			
+			update.setPostDate();
 			update.setBody(tempBody);
+			update.setTitle(tempTitle);
+			update.setImage(tempImage);
+			
+			
 			newsRepository.save(update);
 			returnString = "News article " + update.getId() + " updated";
 		}catch(Exception e) {
@@ -77,28 +75,16 @@ public class NewsService {
 		return returnString;
 	}
 	
-	public String updateNews(News news, Long id, Long gameId) {
+	public String deleteNews(Long id) {
 		String returnString = "";
-		News update;
-		Game game;
 		try {
-			update = newsRepository.findById(id).get();
-			game = gameRepository.findById(gameId).get();
+			newsRepository.deleteById(id);
+			returnString = "News id:" + id + " deleted";
 		}catch(Exception e) {
-			returnString = "Cannot find resource";
-			return returnString;
-		}
-		try {
-			String tempBody = validateUpdate(news.getBody(), update.getBody());
-			update.setBody(tempBody);
-			update.setGame(game);
-			newsRepository.save(update);
-			returnString = game.getName() + " news article " + update.getId() + " updated";
-		}catch(Exception e) {
-			returnString = "Failed to Update";
+			returnString = "Failed to delete";
 		}
 		return returnString;
 	}
-
+	
 	
 }

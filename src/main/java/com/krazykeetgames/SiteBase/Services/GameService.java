@@ -68,7 +68,7 @@ public class GameService {
 			String download = validateUpdate(game.getDownload(),update.getDownload());
 			String github = validateUpdate(game.getGitHub(),update.getGitHub());
 			String requires = validateUpdate(game.getRequires(),update.getRequires());
-			String news = validateUpdate(game.getNews(),update.getNews());
+//			String news = validateUpdate(game.getNews(),update.getNews());
 
 			String[] media;
 			if(game.getMedia() != null && game.getMedia().equals(new String[] {"","",""})) {
@@ -96,7 +96,7 @@ public class GameService {
 			update.setDownload(download);
 			update.setGitHub(github);
 			update.setRequires(requires);
-			update.setNews(news);
+//			update.setNews(news);
 			update.setMedia(media);
 			
 			try {
