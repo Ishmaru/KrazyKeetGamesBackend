@@ -12,14 +12,13 @@ import java.time.LocalDate;
 public class News {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	@NotEmpty
 	private String title;
 	@NotEmpty
 	private String body;
 	private String image;
-	private LocalDate postDate;
+	private LocalDate postDate = LocalDate.now();
 	public String getBody() {
 		return body;
 	}
@@ -62,7 +61,7 @@ public class News {
 		this.body = body;
 		this.title = title;
 		this.image = image;
-		this.postDate = LocalDate.now();
+//		this.postDate = LocalDate.now();
 	}
 
 	public News() {
