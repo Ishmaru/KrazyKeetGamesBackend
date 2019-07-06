@@ -27,17 +27,17 @@ public class NewsController {
 	}
 	
 	@PostMapping(value="/game/{gameId}/news")
-	public String addNews(News news, @PathVariable Long gameId) {
+	public String addNews(News news, @PathVariable String gameId) {
 		return newsService.addNews(news, gameId);
 	}
 	
 	@PutMapping(value="/news/{id}")
-	public String updateNews(News news, @PathVariable Long id) {
+	public String updateNews(News news, @PathVariable String id) {
 		return newsService.editNews(news, id);
 	}
 	
 	@DeleteMapping(value="/news/{id}")
-	public String deleteNews(@PathVariable Long id) {
+	public String deleteNews(@PathVariable String id) {
 		return newsService.deleteNews(id);
 	}
 	

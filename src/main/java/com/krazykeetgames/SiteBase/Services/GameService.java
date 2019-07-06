@@ -19,7 +19,7 @@ public class GameService {
 		return gameRepository.findAll();
 	}
 	
-	public Game getOneGame(Long id) {
+	public Game getOneGame(String id) {
 		try {
 			return gameRepository.findById(id).get();
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class GameService {
 		return returnString;
 	}
 	
-	public String deleteGame(Long id) {
+	public String deleteGame(String id) {
 		String returnString;
 		try {
 			gameRepository.deleteById(id);
@@ -53,7 +53,7 @@ public class GameService {
 		return incoming != null ? incoming : current;
 	}
 	
-	public String updateGame(Long id, Game game) {
+	public String updateGame(String id, Game game) {
 		String returnString;
 		try {
 			Game update = gameRepository.findById(id).get();

@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 public class Game {
 	@Id
-	private Long id;
+	private String id;
 	
 	@NotEmpty(message = "thumb is required")
 	private String thumb;
@@ -152,7 +152,7 @@ public class Game {
 		this.news = news;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 	public String getDetails() {

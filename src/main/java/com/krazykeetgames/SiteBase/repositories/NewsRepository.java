@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.krazykeetgames.SiteBase.models.News;
 
-public interface NewsRepository extends MongoRepository<News, Long> {
+public interface NewsRepository extends MongoRepository<News, String> {
 	List<News> findAll();
-	Optional<News> findById(Long id);
+	Optional<News> findById(String id);
 }

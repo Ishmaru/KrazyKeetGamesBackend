@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class News {
 
 	@Id
-	private long id;
+	private String id;
 	@NotEmpty
 	private String title;
 	@NotEmpty
@@ -28,7 +28,7 @@ public class News {
 	}
 
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

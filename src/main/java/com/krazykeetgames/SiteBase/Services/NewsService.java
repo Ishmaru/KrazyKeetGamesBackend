@@ -23,7 +23,7 @@ public class NewsService {
 		return newsRepository.findAll();
 	}
 	
-	public String addNews(News news, Long gameId) {
+	public String addNews(News news, String gameId) {
 		String returnString = "";	
 		Game game;
 		try {
@@ -51,7 +51,7 @@ public class NewsService {
 		return incoming != null ? incoming : current;
 	}
 	
-	public String editNews(News news, Long id) {
+	public String editNews(News news, String id) {
 		String returnString = "";
 		try {
 			News update = newsRepository.findById(id).get();
@@ -75,7 +75,7 @@ public class NewsService {
 		return returnString;
 	}
 	
-	public String deleteNews(Long id) {
+	public String deleteNews(String id) {
 		String returnString = "";
 		try {
 			newsRepository.deleteById(id);

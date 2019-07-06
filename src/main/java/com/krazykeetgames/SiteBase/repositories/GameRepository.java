@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.krazykeetgames.SiteBase.models.Game;
 //jdbc:h2:file:~/krazykeetgames
-public interface GameRepository extends MongoRepository<Game, Long> {
+public interface GameRepository extends MongoRepository<Game, String> {
 	List<Game>findAll();
-	Optional<Game> findById(Long id);
+	Optional<Game> findById(String id);
 }

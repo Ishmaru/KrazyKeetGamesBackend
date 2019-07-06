@@ -34,7 +34,7 @@ public class GameController {
     
     @CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(value="/game/{id}")
-	public Game getGame(Game game, @PathVariable Long id){
+	public Game getGame(Game game, @PathVariable String id){
 		return gameService.getOneGame(id);
 	}
 	
@@ -43,11 +43,11 @@ public class GameController {
 		return gameService.newGame(game);
 	}
 	@PutMapping(value="/game/{id}")
-	public String updateGame(Game game, @PathVariable Long id) {	
+	public String updateGame(Game game, @PathVariable String id) {	
 		return gameService.updateGame(id, game);
 	}
 	@DeleteMapping(value="/game/{id}")
-	public String delete(Game game, @PathVariable Long id) {
+	public String delete(Game game, @PathVariable String id) {
 		return gameService.deleteGame(id);
 	}
 }
