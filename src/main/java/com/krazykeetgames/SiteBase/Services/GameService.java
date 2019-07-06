@@ -33,7 +33,7 @@ public class GameService {
 			gameRepository.save(game);
 			returnString = game.getName() + " Added"; 
 		}catch(Exception e){
-			returnString = "Game failed to post";
+			returnString = "Game failed to post: \n" + e.getMessage();
 		}
 		return returnString;
 	}
@@ -44,7 +44,7 @@ public class GameService {
 			gameRepository.deleteById(id);
 			returnString = "Game deleted";
 		}catch(Exception e) {
-			returnString = "Cannot delete";
+			returnString = "Cannot delete: \n " + e.getMessage();
 		}
 		return returnString;
 	}
@@ -103,10 +103,10 @@ public class GameService {
 				gameRepository.save(update);
 				returnString = update.getName() + " Updated";
 			}catch(Exception e) {
-				returnString = "Failed to update";
+				returnString = "Failed to update:\n" + e.getMessage();
 			}
 		}catch(Exception e) {
-			returnString = "Not present";
+			returnString = "Not present: \n"  + e.getMessage();
 		}
 		return returnString;
 	}

@@ -33,7 +33,7 @@ public class NewsService {
 			currNews.add(news);
 			game.setNews(currNews);
 		}catch(Exception e) {
-			returnString = "Cannot find game";
+			returnString = "Cannot find game:\n"  + e.getMessage();
 			return returnString;
 		}
 		try {
@@ -42,7 +42,7 @@ public class NewsService {
 			gameRepository.save(game);
 			returnString = "Added" + news.getBody();
 		}catch(Exception e) {
-			returnString = "Failed To post";
+			returnString = "Failed To post:\n" + e.getMessage();
 		}
 		return returnString;
 	}
@@ -70,7 +70,7 @@ public class NewsService {
 			newsRepository.save(update);
 			returnString = "News article " + update.getId() + " updated";
 		}catch(Exception e) {
-			returnString = "Failed to update";
+			returnString = "Failed to update:\n" + e.getMessage();
 		}
 		return returnString;
 	}
@@ -81,7 +81,7 @@ public class NewsService {
 			newsRepository.deleteById(id);
 			returnString = "News id:" + id + " deleted";
 		}catch(Exception e) {
-			returnString = "Failed to delete";
+			returnString = "Failed to delete:\n" + e.getMessage();
 		}
 		return returnString;
 	}
