@@ -31,14 +31,15 @@ public class NewsController {
 		return newsService.addNews(news, gameId);
 	}
 	
-	@PutMapping(value="/news/{id}")
-	public String updateNews(News news, @PathVariable String id) {
-		return newsService.editNews(news, id);
+	@PutMapping(value="/game/{gameId}/news/{id}")
+	public String updateNews(News news, @PathVariable String gameId, @PathVariable String id) {
+		System.out.println("=================HIT=================");
+		return newsService.editNews(news, id, gameId);
 	}
 	
 	@DeleteMapping(value="/news/{id}")
-	public String deleteNews(@PathVariable String id) {
-		return newsService.deleteNews(id);
+	public String deleteNews(@PathVariable String gameId, @PathVariable String id) {
+		return newsService.deleteNews(id, gameId);
 	}
 	
 }

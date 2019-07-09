@@ -71,7 +71,7 @@ public class GameService {
 //			String news = validateUpdate(game.getNews(),update.getNews());
 
 			String[] media;
-			if(game.getMedia() != null && game.getMedia().equals(new String[] {"","",""})) {
+			if(game.getMedia() != null && !game.getMedia().equals(new String[] {"","",""})) {
 				System.out.println(game.getMedia()[0]);
 				System.out.println(game.getMedia()[1]);
 				System.out.println(game.getMedia()[2]);
@@ -85,7 +85,7 @@ public class GameService {
 			}else {
 				media = update.getMedia();
 			}
-			
+//			game.getMedia().equals(new String[] {"","",""})
 			update.setThumb(thumb);
 			update.setBackground(background);
 			update.setName(name);
